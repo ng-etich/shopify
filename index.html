@@ -8,13 +8,34 @@
 </head>
 <body >
     <header>
-        <a href="/">shopify</a>
+        <a href="/" class="logo">shopify</a>
+        <nav id="main-nav" class="main-nav">
+            <a href="#">About</a>
+            <a href="#">History</a>
+            <a href="#">services</a>
+            <a href="#">contact</a>
+        </nav>
         <nav>
             <button>search</button>
             <button id="toggle-mode" class="dark">Dark Mode</button>
+            <button class="mobile-menu" id="mobile-menu">☰</button>
+
+
         </nav>
     </header>
     <main>
+        <div class="slider-container">
+            <div class="slider">
+                <img src="https://via.placeholder.com/800x400?text=Featured+Products" class="slider-image active">
+                <img src="https://via.placeholder.com/800x400?text=Special+Offers" class="slider-image">
+                <img src="https://via.placeholder.com/800x400?text=New+Arrivals" class="slider-image">
+                <img src="https://via.placeholder.com/800x400?text=Best+Sellers" class="slider-image">
+            </div>
+            <div class="slider-nav">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+        </div>
         <h1>Buy Top Rated products</h1>
         <section id="all-products" class="products"></section>
 
