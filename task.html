@@ -14,6 +14,7 @@
         
         .slider {
             display: flex;
+            height: 90vh;
             transition: transform 0.5s ease-in-out;
         }
         
@@ -55,10 +56,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.slider-image, .slider-image');
+            const images = document.querySelectorAll('.slider-image');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
+            let slideInterval;
+            const slideDelay = 3000; // 3 seconds
             
             // Initialize slider
             function showImage(index) {
@@ -81,21 +84,50 @@
                 showImage(currentIndex);
             }
             
+            // Start auto sliding
+            function startSlider() {
+                slideInterval = setInterval(nextImage, slideDelay);
+            }
+            
+            // Stop auto sliding (when user interacts)
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
+            
             // Event listeners
-            nextBtn.addEventListener('click', nextImage);
-            prevBtn.addEventListener('click', prevImage);
+            nextBtn.addEventListener('click', function() {
+                stopSlider();
+                nextImage();
+                startSlider();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                stopSlider();
+                prevImage();
+                startSlider();
+            });
             
             // Keyboard navigation
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'ArrowRight') {
+                    stopSlider();
                     nextImage();
+                    startSlider();
                 } else if (e.key === 'ArrowLeft') {
+                    stopSlider();
                     prevImage();
+                    startSlider();
                 }
             });
             
+            // Pause on hover
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', stopSlider);
+            sliderContainer.addEventListener('mouseleave', startSlider);
+            
             // Initialize
             showImage(currentIndex);
+            startSlider();
         });
     </script>
 </body>

@@ -24,18 +24,20 @@
         </nav>
     </header>
     <main>
-        <div class="slider-container">
-            <div class="slider">
-                <img src="https://via.placeholder.com/800x400?text=Featured+Products" class="slider-image active">
-                <img src="https://via.placeholder.com/800x400?text=Special+Offers" class="slider-image">
-                <img src="https://via.placeholder.com/800x400?text=New+Arrivals" class="slider-image">
-                <img src="https://via.placeholder.com/800x400?text=Best+Sellers" class="slider-image">
-            </div>
-            <div class="slider-nav">
-                <button id="prevBtn">Previous</button>
-                <button id="nextBtn">Next</button>
-            </div>
+        <div class="user-actions">
+         <button id="sort-by-rating">sort By Rating <span>ASC</span></button>
+         <input type="radio" name="range" id="range1"/>
+         <label for="range1">0 -2000</label>
+        <input type="radio" name="range" id="range2"/>
+         <label for="range1">2001 -5000</label>
+        <input type="radio" name="range" id="range3"/>
+         <label for="range1">5001 -8000</label>
+        <input type="radio" name="range" id="range4"/>
+         <label for="range1">Above 8000</label>
+
+
         </div>
+        
         <h1>Buy Top Rated products</h1>
         <section id="all-products" class="products"></section>
 

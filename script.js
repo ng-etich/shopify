@@ -1,4 +1,3 @@
-
 const products = [
   {
     "id": 1,
@@ -240,6 +239,7 @@ const products = [
 ];
 
 function renderProducts(productsArray){
+  document.getElementById("all-products").innerHTML = ""; // Clear previous products
   for (let i=0; i<productsArray.length; i++){
     const newProductElement = document.createElement("div");
     newProductElement.innerHTML = `
@@ -277,3 +277,47 @@ document.getElementById("mobile-menu").addEventListener("click",()=>{
 });
 
 //task- create an image slider use querrySelectorAll to select all images with cla name "slider-image" and then use a for loop to create a slider that can be navigated using next and previous  buttons
+
+
+
+
+const sortedProductsAsc = [...products].sort((a, b) => a.rating.rate - b.rating.rate);
+
+const sortedProductsDesc = [...products].sort((a, b) => b.rating.rate - a.rating.rate);
+
+let countClicks = 1 ;
+
+document.getElementById("sort-by-rating").addEventListener("click", () => {
+
+  
+  if(countClicks % 2 == 0){
+    renderProducts(sortedProductsAsc);
+  }else{
+    renderProducts(sortedProductsDesc);
+  }
+  countClicks++;
+
+});
+
+//calling by refrence and by value
+
+document.querySelectorAll("input[name= 'range']").forEach((inputE1) => {
+  inputE1.addEventListener("change", (e) => {
+    const theInputCheckedId = e.target.id;
+    console.log(theInputCheckedId);
+    let  filteredInputs = []
+    if( theInputCheckedId == "range1"){
+      filteredInputs = products.filter(p => p.price*129 < 2000)
+      
+    }else if(theInputCheckedId == "range2"){
+      filteredInputs = products.filter(p => p.price*129 > 2000 && p.price*129 < 5000)
+
+  }else if(theInputCheckedId == "range3"){
+      filteredInputs = products.filter(p => p.price*129 > 5000 && p.price*129 < 8000)
+    }else{
+      filteredInputs = products.filter(p => p.price*129 > 8000)
+    }
+    renderProducts(filteredInputs);
+  });
+});
+//TASK implement searching through the products  - use  search bar to filter the proucts based on the search querry - use the filter metod to identify if the searchTerm is in the product tittle or description then use renderProducts functions
